@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>side-quest-admin</artifactId>
+    <packaging>war</packaging>
+    <version>1.0</version>
+    <name>Side Quest Admin</name>
+
+    <parent>
+        <groupId>com.hss.app</groupId>
+        <artifactId>side-quest</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <properties>
+        <jetty.port>8081</jetty.port>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.hss.app</groupId>
+            <artifactId>side-quest-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

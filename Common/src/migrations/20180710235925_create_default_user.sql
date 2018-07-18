@@ -1,0 +1,1 @@
+INSERT INTO users (username, password) VALUES ('default', SHA2('password', 256));
