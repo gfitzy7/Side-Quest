@@ -45,4 +45,10 @@
         <p>Item Data...</p>
     </div>
 
+    <div style="text-align:center;padding-bottom:20px">
+        <a href="/card_set/create_new_card" style="text-decoration:none;padding-right:10px">
+            <button>Create Card</button>
+        </a>
+    </div>
+
 </div>

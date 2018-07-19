@@ -1,9 +1,9 @@
 package app.controllers;
 
-import app.models.Card;
-import app.models.CardSet;
+import app.models.*;
 import org.javalite.activejdbc.Paginator;
 import org.javalite.activeweb.annotations.GET;
+import org.javalite.activeweb.annotations.POST;
 
 import java.util.List;
 
@@ -33,6 +33,38 @@ public class CardSetController extends AbstractAppController {
         view("page", page);
         view("cards", p.getPage(page));
         view("numCards", cards.size());
+    }
+
+    @GET
+    public void newSet(){
+
+    }
+
+    @POST
+    public void createNewSet(){
+        if(param("submit") != null){
+            if(param("name").length() == 0 || param("description").length() == 0){
+
+            }
+            else{
+                CardSet.createIt("set_name", param("name"), "set_description", param("description"));
+            }
+        }
+
+        redirect();
+    }
+
+    @GET
+    public void createNewCard(){
+        ItemCard item = ItemCard.createIt("card_id", -1);
+        Card card = Card.createIt("card_set_id", 1, "card_set_card_number", 1, "parent_id", item.getId(), "parent_type", ItemCard.class.getName(),
+                "name", "Item", "description", "item description");
+
+        item.set("card_id", card.getId()).saveIt();
+
+        System.out.println(((ItemCard) ItemCard.findById(item.getLongId())).getName());
+
+        redirectToReferrer();
     }
 
     @GET
