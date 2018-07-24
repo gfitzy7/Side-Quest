@@ -57,7 +57,7 @@ public class CardSetController extends AbstractAppController {
     @GET
     public void createNewCard(){
         ItemCard item = ItemCard.createIt("card_id", -1);
-        Card card = Card.createIt("card_set_id", 1, "card_set_card_number", 1, "parent_id", item.getId(), "parent_type", ItemCard.class.getName(),
+        Card card = Card.createIt("card_set_id", 3, "card_set_card_number", 1, "parent_id", item.getId(), "parent_type", ItemCard.class.getName(),
                 "name", "Item", "description", "item description");
 
         item.set("card_id", card.getId()).saveIt();
