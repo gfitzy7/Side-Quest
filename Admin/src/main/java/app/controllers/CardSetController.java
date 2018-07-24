@@ -30,6 +30,7 @@ public class CardSetController extends AbstractAppController {
         int page = (param("page") == null ? 1 : Integer.parseInt(param("page")));
 
         view("set_id", cardSet.getId());
+        view("set_name", cardSet.getName());
         view("page", page);
         view("cards", p.getPage(page));
         view("numCards", cards.size());
@@ -54,17 +55,24 @@ public class CardSetController extends AbstractAppController {
         redirect();
     }
 
-    @GET
+    @POST
     public void createNewCard(){
+        if(param("cardType") != null){
+            for(Card.CardType type : Card.CardType.values()){
+                if(type.name().equalsIgnoreCase(param("cardType"))){
+
+                }
+            }
+        }
+
+        CardSet set = CardSet.findById(param("set_id"));
         ItemCard item = ItemCard.createIt("card_id", -1);
-        Card card = Card.createIt("card_set_id", 3, "card_set_card_number", 1, "parent_id", item.getId(), "parent_type", ItemCard.class.getName(),
-                "name", "Item", "description", "item description");
+        Card card = Card.createIt("card_set_id", param("set_id"), "card_set_card_number", set.getFirstAvailableSetCardSetNumber(), "parent_id", item.getId(), "parent_type", ItemCard.class.getName(),
+                "name", param("cardName"), "description", param("cardDescription"), "mana_cost", param("manaCost"));
 
         item.set("card_id", card.getId()).saveIt();
 
-        System.out.println(((ItemCard) ItemCard.findById(item.getLongId())).getName());
-
-        redirectToReferrer();
+        redirect(CardSetController.class, "overview", param("set_id"));
     }
 
     @GET

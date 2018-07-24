@@ -24,7 +24,7 @@
         <#list cards as card>
             <tr style="text-align:center;background-color:lightgrey">
                 <td><a href="/card_set/view_card?id=${card.id}">${card.name!""}</a></td>
-                <td>${card.description!""}</td>
+                <td>${set_name!""}</td>
                 <td>${card.card_set_card_number!""}</td>
                 <td>${card.description!""}</td>
             </tr>

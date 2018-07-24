@@ -1,3 +1,61 @@
+<@content for="style">
+<style>
+
+    html{
+        background-color: lightgrey;
+    }
+
+    label{
+        font-weight: bold;
+    }
+
+    h2{
+        text-align: center;
+    }
+
+    table{
+        width: 100%;
+    }
+
+    td.third{
+        width: 33%;
+    }
+
+    td.half{
+        width: 50%;
+    }
+
+    td.full{
+        width: 100%;
+    }
+
+    input:not([type=checkbox]), select{
+        width: 100%;
+        padding: 8px 12px;
+        margin: 8px 0 16px;
+        display: inline-block;
+        border: 1px solid #000;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=number]{
+        width:35%;
+        padding: 8px 0px 8px 12px;
+    }
+
+    div.form-box{
+        background-color: lightsteelblue;
+        margin-left:15%;
+        margin-right:15%;
+        border: 1px solid;
+        padding:15px;
+        margin-bottom:15px
+    }
+
+</style>
+</@content>
+
 <@content for="js">
     <script type="text/javascript">
 
@@ -16,48 +74,98 @@
 
             $('#' + selected).show();
         };
+
+        function updateDeckLimitField(){
+            $('#deckLimit')[0].disabled = !$('#useDeckLimit')[0].checked;
+        }
+
     </script>
 </@content>
 
-<div style="text-align:center;margin-top:20px">
+<div style="margin-top:20px">
 
-    <h3>Add a card to set ${set_name}</h3>
+    <h2>Add a card to set ${set_name}</h2>
 
-    <div style="margin-left:15%;margin-right:15%;border-style:solid;border-width:1px;padding:15px;margin-bottom:15px">
-        <select name="cardType" id="cardType" onchange="showSelectedOnly()">
-            <option value="character">Character</option>
-            <option value="equipment">Equipment</option>
-            <option value="gambit">Gambit</option>
-            <option value="item">Item</option>
-        </select>
-    </div>
+    <@form controller="card_set" action="create_new_card" method="post">
 
-    <div id="character" style="margin-left:15%;margin-right:15%;border-style:solid;border-width:1px;padding:15px">
-        <p>Character Data...</p>
-    </div>
-    <div id="equipment" style="margin-left:15%;margin-right:15%;border-style:solid;border-width:1px;padding:15px">
-        <p>Equipment Data...</p>
-    </div>
-    <div id="gambit" style="margin-left:15%;margin-right:15%;border-style:solid;border-width:1px;padding:15px">
-        <p>Gambit Data...</p>
-    </div>
-    <div id="item" style="margin-left:15%;margin-right:15%;border-style:solid;border-width:1px;padding:15px">
-        <p>Item Data...</p>
-    </div>
+        <input type="hidden" name="set_id" value=${set_id} />
 
-    <div style="text-align:center;padding-bottom:20px">
-        <a href="/card_set/create_new_card" style="text-decoration:none;padding-right:10px">
-            <button>Create Card</button>
-        </a>
-    </div>
+        <div id="main" class="form-box">
 
-    <div class="row margin-top-30">
-        <div class="col-xs-4 text-right">
-            <@link_to class="btn btn-red-b btn-lg width230" action="overview/${set_id}">Cancel</@link_to>
+            <table>
+                <tr>
+                    <table>
+                        <tr>
+                            <td class="half">
+                                <label for="cardType">Card Type:</label>
+                                <select name="cardType" id="cardType" onchange="showSelectedOnly()">
+                                    <option value="character">Character</option>
+                                    <option value="equipment">Equipment</option>
+                                    <option value="gambit">Gambit</option>
+                                    <option value="item">Item</option>
+                                </select>
+                            </td>
+                            <td class="half">
+                                <label for="cardName">Card Name:</label>
+                                <input type="text" name="cardName" id="cardName" placeholder="Enter card name..." required/>
+                            </td>
+                        </tr>
+                    </table>
+                </tr>
+                <tr>
+                    <td class="full">
+                        <label for="cardDescription">Card Description:</label>
+                        <input type="textarea" name="cardDescription" id="cardDescription" placeholder="Enter card description..."/>
+                    </td>
+                </tr>
+                <tr>
+                    <table>
+                        <tr>
+                            <td class="third">
+                                <label for="manaCost">Mana Cost:</label>
+                                <br/>
+                                <input type="number" name="manaCost" id="manaCost" value="0"/>
+                            </td>
+                            <td class="third">
+                                <label for="useDeckLimit">Limited Number Per Deck?</label>
+                                <input type="checkbox" name="useDeckLimit" id="useDeckLimit" onchange="updateDeckLimitField()"/>
+                                <br/>
+                                <input type="number" name="deckLimit" id="deckLimit" value="4" disabled/>
+                            </td>
+                            <td class="third">
+
+                            </td>
+                        </tr>
+                    </table>
+                </tr>
+            </table>
+
+
+
         </div>
-        <div class="col-xs-4">
-            <@link_to class="btn btn-green-c btn-lg width230" action="yes">Create</@link_to>
+
+        <div id="character"  class="form-box">
+            <@render partial="character_panel"/>
         </div>
-    </div>
+        <div id="equipment"  class="form-box">
+            <@render partial="equipment_panel"/>
+        </div>
+        <div id="gambit" class="form-box">
+            <@render partial="gambit_panel"/>
+        </div>
+        <div id="item" class="form-box">
+            <@render partial="item_panel"/>
+        </div>
+
+        <div class="row margin-top-30">
+            <div>
+                <@link_to action="overview/${set_id}">Cancel</@link_to>
+            </div>
+            <button type="submit">Create</button>
+            <#--<div class="col-xs-4">-->
+                <#--<@link_to class="btn btn-green-c btn-lg width230" action="create_new_card/${set_id}">Create</@link_to>-->
+            <#--</div>-->
+        </div>
+    </@form>
 
 </div>

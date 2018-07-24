@@ -2,8 +2,8 @@ package app.models;
 
 import org.javalite.activejdbc.annotations.Table;
 
-@Table("item_cards")
-public class ItemCard extends Card {
+@Table("character_cards")
+public class CharacterCard extends Card {
 
 
 
