@@ -20,6 +20,8 @@
         <jetty.port>5215</jetty.port>
         <logger-name>CONSOLE</logger-name>
         <javalite-version>2.0</javalite-version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
