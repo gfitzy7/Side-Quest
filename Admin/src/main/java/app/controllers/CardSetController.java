@@ -52,17 +52,23 @@ public class CardSetController extends AbstractAppController {
 
     @POST
     public void createNewCard(){
-        if(param("cardType") != null){
-            for(Card.CardType type : Card.CardType.values()){
-                if(type.name().equalsIgnoreCase(param("cardType"))){
-
-                }
-            }
-        }
-
         CardSet set = CardSet.findById(param("set_id"));
-        ItemCard.createIt("card_set_id", param("set_id"), "card_set_card_number", set.getFirstAvailableSetCardSetNumber(),
-                "name", param("cardName"), "description", param("cardDescription"), "mana_cost", param("manaCost")).saveIt();
+
+        Card.CardType cardType = Card.CardType.getCardType(param("cardType"));
+
+        if(cardType == Card.CardType.CHARACTER){
+
+        }
+        else if(cardType == Card.CardType.EQUIPMENT){
+
+        }
+        else if(cardType == Card.CardType.GAMBIT){
+
+        }
+        else if(cardType == Card.CardType.ITEM){
+            ItemCard.createIt("card_set_id", param("set_id"), "card_set_card_number", set.getFirstAvailableSetCardSetNumber(),
+                    "name", param("cardName"), "description", param("cardDescription"), "mana_cost", param("manaCost")).saveIt();
+        }
 
         redirect(CardSetController.class, "overview", param("set_id"));
     }

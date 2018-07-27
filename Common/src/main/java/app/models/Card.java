@@ -22,6 +22,26 @@ public abstract class Card extends Model {
             this.tableName = tableName;
         }
 
+        public static Class<? extends Card> getCardClassByType(String cardType){
+            for(CardType type : values()){
+                if(type.name().equalsIgnoreCase(cardType)){
+                    return type.cardClass;
+                }
+            }
+
+            return null;
+        }
+
+        public static CardType getCardType(String cardType){
+            for(CardType type : values()){
+                if(type.name().equalsIgnoreCase(cardType)){
+                    return type;
+                }
+            }
+
+            return null;
+        }
+
         public Class<? extends Card> getCardClass(){
             return cardClass;
         }
