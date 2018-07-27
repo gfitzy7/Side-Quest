@@ -25,14 +25,9 @@ public class CardSetController extends AbstractAppController {
         CardSet cardSet = CardSet.findById(getId());
         List<Card> cards = Card.findBySetId(cardSet.getId().toString());
 
-        Paginator p = new Paginator(Card.class, 10, "card_set_id = ?", cardSet.getId().toString());
-
-        int page = (param("page") == null ? 1 : Integer.parseInt(param("page")));
-
         view("set_id", cardSet.getId());
         view("set_name", cardSet.getName());
-        view("page", page);
-        view("cards", p.getPage(page));
+        view("cards", cards);
         view("numCards", cards.size());
     }
 
@@ -66,11 +61,8 @@ public class CardSetController extends AbstractAppController {
         }
 
         CardSet set = CardSet.findById(param("set_id"));
-        ItemCard item = ItemCard.createIt("card_id", -1);
-        Card card = Card.createIt("card_set_id", param("set_id"), "card_set_card_number", set.getFirstAvailableSetCardSetNumber(), "parent_id", item.getId(), "parent_type", ItemCard.class.getName(),
-                "name", param("cardName"), "description", param("cardDescription"), "mana_cost", param("manaCost"));
-
-        item.set("card_id", card.getId()).saveIt();
+        ItemCard.createIt("card_set_id", param("set_id"), "card_set_card_number", set.getFirstAvailableSetCardSetNumber(),
+                "name", param("cardName"), "description", param("cardDescription"), "mana_cost", param("manaCost")).saveIt();
 
         redirect(CardSetController.class, "overview", param("set_id"));
     }

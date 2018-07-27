@@ -2,26 +2,49 @@ package app.models;
 
 import org.javalite.activejdbc.Model;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Card extends Model {
+public abstract class Card extends Model {
 
     public enum CardType{
-        CHARACTER(CharacterCard.class), EQUIPMENT(EquipmentCard.class), GAMBIT(GambitCard.class), ITEM(ItemCard.class);
+        CHARACTER(CharacterCard.class, "character_cards"),
+        EQUIPMENT(EquipmentCard.class, "equipment_cards"),
+        GAMBIT(GambitCard.class, "gambit_cards"),
+        ITEM(ItemCard.class, "item_cards");
 
         private Class cardClass;
+        private String tableName;
 
-        CardType(Class<? extends Card> cardClass) {
+        CardType(Class<? extends Card> cardClass, String tableName) {
             this.cardClass = cardClass;
+            this.tableName = tableName;
         }
 
         public Class<? extends Card> getCardClass(){
             return cardClass;
         }
+
+        public String getTableName(){
+            return tableName;
+        }
     }
 
     public static List<Card> findBySetId(String setId){
-        return Card.find("card_set_id = ?", setId);
+        ArrayList<Card> cards = new ArrayList<>();
+
+        try{
+            for(CardType cardType : CardType.values()){
+                Method m = (cardType.getCardClass()).getMethod("find", String.class, Object[].class);
+                cards.addAll((List<Card>) m.invoke(cardType.getCardClass(), "card_set_id = ?", new Object[]{setId}));
+            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+
+        return cards;
     }
 
     public String getName(){
