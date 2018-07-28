@@ -1,10 +1,12 @@
 package app.controllers;
 
 import app.models.*;
+import app.models.packs.Rarity;
 import org.javalite.activejdbc.Paginator;
 import org.javalite.activeweb.annotations.GET;
 import org.javalite.activeweb.annotations.POST;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CardSetController extends AbstractAppController {
@@ -52,10 +54,9 @@ public class CardSetController extends AbstractAppController {
 
     @POST
     public void createNewCard(){
-        CardSet set = CardSet.findById(param("set_id"));
+        ArrayList<Object> namesAndValues = getCommonNamesAndValues();
 
         Card.CardType cardType = Card.CardType.getCardType(param("cardType"));
-
         if(cardType == Card.CardType.CHARACTER){
 
         }
@@ -66,8 +67,7 @@ public class CardSetController extends AbstractAppController {
 
         }
         else if(cardType == Card.CardType.ITEM){
-            ItemCard.createIt("card_set_id", param("set_id"), "card_set_card_number", set.getFirstAvailableSetCardSetNumber(),
-                    "name", param("cardName"), "description", param("cardDescription"), "mana_cost", param("manaCost")).saveIt();
+            ItemCard.createIt(namesAndValues.toArray()).saveIt();
         }
 
         redirect(CardSetController.class, "overview", param("set_id"));
@@ -77,8 +77,38 @@ public class CardSetController extends AbstractAppController {
     public void newCard(){
         CardSet cardSet = CardSet.findById(getId());
 
+        List<Rarity> rarities = Rarity.getAllFromMostToLeastCommon();
+        List<String> rarityNames = new ArrayList<>();
+        for(Rarity rarity : rarities){
+            rarityNames.add("[" + rarity.getPriority() + "] " + rarity.getName());
+        }
+
         view("set_id", getId());
         view("set_name", cardSet.getName());
+        view("rarity_names", rarityNames);
+    }
+
+    private ArrayList<Object> getCommonNamesAndValues(){
+        CardSet set = CardSet.findById(param("set_id"));
+
+        ArrayList<Object> namesAndValues = new ArrayList<>();
+
+        namesAndValues.add("card_set_id");
+        namesAndValues.add(param("set_id"));
+        namesAndValues.add("card_set_card_number");
+        namesAndValues.add(set.getFirstAvailableSetCardSetNumber());
+        namesAndValues.add("name");
+        namesAndValues.add(param("cardName"));
+        namesAndValues.add("description");
+        namesAndValues.add(param("cardDescription"));
+        namesAndValues.add("mana_cost");
+        namesAndValues.add(param("manaCost"));
+        namesAndValues.add("rarity_id");
+        namesAndValues.add(Rarity.findByName(param("rarity")).getLongId());
+        namesAndValues.add("rarity_weight");
+        namesAndValues.add(param("rarityWeight"));
+
+        return namesAndValues;
     }
 
 }

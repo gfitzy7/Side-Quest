@@ -44,6 +44,10 @@
         padding: 8px 0px 8px 12px;
     }
 
+    select{
+        width:80%;
+    }
+
     div.form-box{
         background-color: lightsteelblue;
         margin-left:15%;
