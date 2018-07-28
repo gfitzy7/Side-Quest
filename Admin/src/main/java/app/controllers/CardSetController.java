@@ -58,7 +58,18 @@ public class CardSetController extends AbstractAppController {
 
         Card.CardType cardType = Card.CardType.getCardType(param("cardType"));
         if(cardType == Card.CardType.CHARACTER){
+            namesAndValues.add("power");
+            namesAndValues.add(param("power"));
+            namesAndValues.add("health");
+            namesAndValues.add(param("health"));
+            namesAndValues.add("attack");
+            namesAndValues.add(exists("attack") ? "1" : "0");
+            namesAndValues.add("defense");
+            namesAndValues.add(param("defense"));
+            namesAndValues.add("class_id");
+            namesAndValues.add(CharacterClass.findByName(param("class")).getLongId());
 
+            CharacterCard.createIt(namesAndValues.toArray());
         }
         else if(cardType == Card.CardType.EQUIPMENT){
 
@@ -88,9 +99,12 @@ public class CardSetController extends AbstractAppController {
             rarityNames.add("[" + rarity.getPriority() + "] " + rarity.getName());
         }
 
+        List<CharacterClass> classes = CharacterClass.findAll();
+
         view("set_id", getId());
         view("set_name", cardSet.getName());
         view("rarity_names", rarityNames);
+        view("classes", classes);
     }
 
     private ArrayList<Object> getCommonNamesAndValues(){
