@@ -111,10 +111,8 @@
             <div>
                 <@link_to action="overview/${set_id}">Cancel</@link_to>
             </div>
+
             <button type="submit">Create</button>
-            <#--<div class="col-xs-4">-->
-                <#--<@link_to class="btn btn-green-c btn-lg width230" action="create_new_card/${set_id}">Create</@link_to>-->
-            <#--</div>-->
         </div>
     </@form>
 
