@@ -64,10 +64,15 @@ public class CardSetController extends AbstractAppController {
 
         }
         else if(cardType == Card.CardType.GAMBIT){
+            namesAndValues.add("use_variable_mana_cost");
+            namesAndValues.add(exists("useVariableManaCost") ? "1" : "0");
+            namesAndValues.add("variable_mana_cost");
+            namesAndValues.add(param("variableManaCost"));
 
+            GambitCard.createIt(namesAndValues.toArray());
         }
         else if(cardType == Card.CardType.ITEM){
-            ItemCard.createIt(namesAndValues.toArray()).saveIt();
+            ItemCard.createIt(namesAndValues.toArray());
         }
 
         redirect(CardSetController.class, "overview", param("set_id"));
