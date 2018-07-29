@@ -1,4 +1,4 @@
-package app.models;
+package app.models.cards;
 
 import org.javalite.activejdbc.Model;
 

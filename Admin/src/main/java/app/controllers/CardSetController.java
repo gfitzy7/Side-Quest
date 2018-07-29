@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.models.*;
+import app.models.cards.*;
 import app.models.packs.Rarity;
 import org.javalite.activejdbc.Paginator;
 import org.javalite.activeweb.annotations.GET;
@@ -105,6 +106,13 @@ public class CardSetController extends AbstractAppController {
         view("set_name", cardSet.getName());
         view("rarity_names", rarityNames);
         view("classes", classes);
+    }
+
+    @GET
+    public void deleteCard(){
+        Card.findById(getId()).delete();
+
+        redirectToReferrer();
     }
 
     private ArrayList<Object> getCommonNamesAndValues(){
