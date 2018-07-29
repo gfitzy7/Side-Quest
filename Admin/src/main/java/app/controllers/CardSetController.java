@@ -26,7 +26,7 @@ public class CardSetController extends AbstractAppController {
     @GET
     public void overview(){
         CardSet cardSet = CardSet.findById(getId());
-        List<Card> cards = Card.findBySetId(cardSet.getId().toString());
+        List<Card> cards = cardSet.findAllFromSet();
 
         view("set_id", cardSet.getId());
         view("set_name", cardSet.getName());
@@ -111,6 +111,14 @@ public class CardSetController extends AbstractAppController {
     @GET
     public void deleteCard(){
         Card.findById(getId()).delete();
+
+        redirectToReferrer();
+    }
+
+    @GET
+    public void refreshOrder(){
+        CardSet cardSet = CardSet.findById(getId());
+        cardSet.refreshCardSetOrder();
 
         redirectToReferrer();
     }

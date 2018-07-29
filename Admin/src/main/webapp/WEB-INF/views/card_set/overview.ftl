@@ -56,8 +56,11 @@
         <a href="/card_set/overview?id=${set_id}" style="text-decoration:none;padding-right:10px">
             <button>Delete Set</button>
         </a>
-        <a href="/card_set/new_card?id=${set_id}">
+        <a href="/card_set/new_card?id=${set_id}" style="text-decoration:none;padding-right:10px">
             <button>New Card</button>
+        </a>
+        <a href="/card_set/refresh_order?id=${set_id}" style="text-decoration:none;padding-right:10px">
+            <button>Refresh Order</button>
         </a>
     </div>
 

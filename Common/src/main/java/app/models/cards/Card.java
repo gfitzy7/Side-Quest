@@ -4,26 +4,26 @@ import app.models.packs.Rarity;
 import org.javalite.activejdbc.Model;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public abstract class Card extends Model implements Comparable<Card> {
 
     public enum CardType{
-        CHARACTER(CharacterCard.class, "character_cards", "Character"),
-        EQUIPMENT(EquipmentCard.class, "equipment_cards", "Equipment"),
-        GAMBIT(GambitCard.class, "gambit_cards", "Gambit"),
-        ITEM(ItemCard.class, "item_cards", "Item");
+        CHARACTER(CharacterCard.class, "character_cards", "Character", 1),
+        EQUIPMENT(EquipmentCard.class, "equipment_cards", "Equipment", 2),
+        GAMBIT(GambitCard.class, "gambit_cards", "Gambit", 3),
+        ITEM(ItemCard.class, "item_cards", "Item", 4);
 
         private Class cardClass;
         private String tableName;
         private String displayName;
+        private int sortPriority;
 
-        CardType(Class<? extends Card> cardClass, String tableName, String displayName) {
+        CardType(Class<? extends Card> cardClass, String tableName, String displayName, int sortPriority) {
             this.cardClass = cardClass;
             this.tableName = tableName;
             this.displayName = displayName;
+            this.sortPriority = sortPriority;
         }
 
         public static Class<? extends Card> getCardClassByType(String cardType){
@@ -57,27 +57,13 @@ public abstract class Card extends Model implements Comparable<Card> {
         public String toString(){
             return displayName;
         }
+
+        public Integer getSortPriority() {
+            return sortPriority;
+        }
     }
 
     public abstract CardType getCardType();
-
-    public static List<Card> findBySetId(String setId){
-        ArrayList<Card> cards = new ArrayList<>();
-
-        try{
-            for(CardType cardType : CardType.values()){
-                Method m = (cardType.getCardClass()).getMethod("find", String.class, Object[].class);
-                cards.addAll((List<Card>) m.invoke(cardType.getCardClass(), "card_set_id = ?", new Object[]{setId}));
-            }
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
-
-        Collections.sort(cards);
-
-        return cards;
-    }
 
     public static Card findById(Object id){
         try{
