@@ -88,11 +88,12 @@
 
 <div style="margin-top:20px">
 
-    <h2>Add a card to set ${set_name}</h2>
+    <h2>Edit Card</h2>
 
-    <@form controller="card_set" action="create_new_card" method="post">
+    <@form controller="card_set" action="save_card" method="post">
 
         <input type="hidden" name="set_id" value=${set_id} />
+        <input type="hidden" name="id" value=${card_id} />
 
         <div id="main" class="form-box">
             <@render partial="card_common_panel"/>
@@ -107,7 +108,7 @@
         <div id="gambit" class="form-box">
             <@render partial="gambit_panel"/>
         </div>
-        <div id="item">
+        <div id="item" >
             <@render partial="item_panel"/>
         </div>
 
@@ -116,7 +117,7 @@
                 <@link_to action="overview/${set_id}">Cancel</@link_to>
             </div>
 
-            <button type="submit">Create</button>
+            <button type="submit">Save</button>
         </div>
     </@form>
 

@@ -10,4 +10,16 @@ public class GambitCard extends Card {
         return CardType.GAMBIT;
     }
 
+    @Override
+    public Long getCardId() {
+        return parent(Card.class).getLongId();
+    }
+
+    public Boolean getUseVariableManaCost(){
+        return getBoolean("use_variable_mana_cost");
+    }
+
+    public Integer getVariableManaCost(){
+        return getInteger("variable_mana_cost");
+    }
 }

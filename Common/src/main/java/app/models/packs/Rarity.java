@@ -2,6 +2,7 @@ package app.models.packs;
 
 import org.javalite.activejdbc.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,16 @@ public class Rarity extends Model {
 
     public static List<Rarity> getAllFromMostToLeastCommon(){
         return find("ORDER BY priority ASC");
+    }
+
+    public static List<String> getAllFromMostToLeastCommonWithPrefix(){
+        List<Rarity> rarities = Rarity.getAllFromMostToLeastCommon();
+        List<String> rarityNames = new ArrayList<>();
+        for(Rarity rarity : rarities){
+            rarityNames.add("[" + rarity.getPriority() + "] " + rarity.getName());
+        }
+
+        return rarityNames;
     }
 
     public static Rarity findByName(String name){

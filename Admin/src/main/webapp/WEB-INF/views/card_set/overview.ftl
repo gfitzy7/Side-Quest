@@ -81,8 +81,8 @@
                 <td>${card.card_set_card_number!""}</td>
                 <td>${card.description!""}</td>
                 <td>
-                    <@link_to class="button-red" action="delete_card/${card.id}" confirm="Are you sure you want to delete this card?">Delete</@>
-                    <@link_to class="button-green" action="edit_card/${card.id}">Edit</@>
+                    <@link_to class="button-red" action="delete_card/${card.cardId}" confirm="Are you sure you want to delete this card?">Delete</@>
+                    <@link_to class="button-green" action="edit_card/${card.cardId}">Edit</@>
                 </td>
             </tr>
         </#list>

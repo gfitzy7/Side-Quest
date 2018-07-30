@@ -10,4 +10,8 @@ public class ItemCard extends Card {
         return CardType.ITEM;
     }
 
+    @Override
+    public Long getCardId() {
+        return parent(Card.class).getLongId();
+    }
 }

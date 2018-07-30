@@ -6,7 +6,7 @@ import org.javalite.activejdbc.Model;
 import java.lang.reflect.Method;
 import java.util.List;
 
-public abstract class Card extends Model implements Comparable<Card> {
+public class Card extends Model implements Comparable<Card> {
 
     public enum CardType{
         CHARACTER(CharacterCard.class, "character_cards", "Character", 1),
@@ -26,16 +26,6 @@ public abstract class Card extends Model implements Comparable<Card> {
             this.sortPriority = sortPriority;
         }
 
-        public static Class<? extends Card> getCardClassByType(String cardType){
-            for(CardType type : values()){
-                if(type.name().equalsIgnoreCase(cardType)){
-                    return type.cardClass;
-                }
-            }
-
-            return null;
-        }
-
         public static CardType getCardType(String cardType){
             for(CardType type : values()){
                 if(type.name().equalsIgnoreCase(cardType)){
@@ -50,10 +40,6 @@ public abstract class Card extends Model implements Comparable<Card> {
             return cardClass;
         }
 
-        public String getTableName(){
-            return tableName;
-        }
-
         public String toString(){
             return displayName;
         }
@@ -63,13 +49,19 @@ public abstract class Card extends Model implements Comparable<Card> {
         }
     }
 
-    public abstract CardType getCardType();
+    public CardType getCardType(){
+        return null;
+    }
+
+    public Long getCardId(){
+        return getLongId();
+    };
 
     public static Card findById(Object id){
         try{
             for(CardType type : CardType.values()){
                 Method m = (type.getCardClass()).getMethod("find", String.class, Object[].class);
-                List<Card> cards = (List<Card>) m.invoke(type.getCardClass(), "id = ?", new Object[]{id});
+                List<Card> cards = (List<Card>) m.invoke(type.getCardClass(), "card_id = ?", new Object[]{id});
                 if(cards.size() > 0){
                     return cards.get(0);
                 }
