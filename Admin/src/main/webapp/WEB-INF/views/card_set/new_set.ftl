@@ -17,19 +17,4 @@
         <button type="submit" value="Reset" name="cancel">Cancel</button>
     </@>
 
-    <#--<form action="/card_set/create_new_set" method="post">-->
-        <#--<label for="set_name">Set Name:</label>-->
-        <#--<input type="text" id="set_name" placeholder="Enter the name of the set..."/>-->
-
-        <#--<br>-->
-
-        <#--<div style="vertical-align:middle">-->
-            <#--<label for="set_description">Set Description:</label>-->
-            <#--<textarea rows="3" cols="40" style="resize:none;" id="set_description" placeholder="Set description..."></textarea>-->
-        <#--</div>-->
-
-        <#--<button type="submit" value="Submit">Submit</button>-->
-        <#--<button type="submit" value="Reset">Cancel</button>-->
-    <#--</form>-->
-
 </div>

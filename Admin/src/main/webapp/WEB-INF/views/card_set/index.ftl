@@ -5,13 +5,13 @@
         <p>There are ${numCardSets!0} card sets.</p>
     </#if>
 
-    <div style="text-align:center;padding-bottom:20px">
+    <div class="center" style="padding-bottom:20px">
         <a href="/card_set/new_set" style="text-decoration:none;padding-right:10px">
             <button>Create Set</button>
         </a>
     </div>
 
-    <table style="width:100%">
+    <table>
         <tr style="background-color:lightblue">
             <th width="12%">Set Name</th>
             <th width="8%">Num Cards</th>

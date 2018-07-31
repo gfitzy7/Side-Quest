@@ -7,5 +7,6 @@ import org.javalite.activeweb.AppContext;
 public class RouteConfig extends AbstractRouteConfig {
     public void init(AppContext appContext) {
         route("/").to(LoginController.class);
+        ignore("/bootstrap.css").exceptIn("development");
     }
 }

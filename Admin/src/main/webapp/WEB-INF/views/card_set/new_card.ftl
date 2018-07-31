@@ -1,65 +1,3 @@
-<@content for="style">
-<style>
-
-    html{
-        background-color: lightgrey;
-    }
-
-    label{
-        font-weight: bold;
-    }
-
-    h2{
-        text-align: center;
-    }
-
-    table{
-        width: 100%;
-    }
-
-    td.third{
-        width: 33%;
-    }
-
-    td.half{
-        width: 50%;
-    }
-
-    td.full{
-        width: 100%;
-    }
-
-    input:not([type=checkbox]), select{
-        width: 100%;
-        padding: 8px 12px;
-        margin: 8px 0 16px;
-        display: inline-block;
-        border: 1px solid #000;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    input[type=number]{
-        width:35%;
-        padding: 8px 0px 8px 12px;
-    }
-
-    select{
-        width:80%;
-    }
-
-    div.form-box{
-        background-color: lightsteelblue;
-        margin-left:15%;
-        margin-right:15%;
-        border: 1px solid;
-        padding:15px;
-        margin-bottom:15px
-    }
-
-</style>
-</@content>
-
 <@content for="js">
     <script type="text/javascript">
 
@@ -98,10 +36,10 @@
             <@render partial="card_common_panel"/>
         </div>
 
-        <div id="character"  class="form-box">
+        <div id="character" class="form-box">
             <@render partial="character_panel"/>
         </div>
-        <div id="equipment"  class="form-box">
+        <div id="equipment" class="form-box">
             <@render partial="equipment_panel"/>
         </div>
         <div id="gambit" class="form-box">

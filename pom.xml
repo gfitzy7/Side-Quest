@@ -19,7 +19,7 @@
     <properties>
         <jetty.port>5215</jetty.port>
         <logger-name>CONSOLE</logger-name>
-        <javalite-version>2.0</javalite-version>
+        <javalite.version>2.0</javalite.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -28,19 +28,19 @@
         <dependency>
             <groupId>org.javalite</groupId>
             <artifactId>javalite-common</artifactId>
-            <version>${javalite-version}</version>
+            <version>${javalite.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.javalite</groupId>
             <artifactId>activeweb</artifactId>
-            <version>${javalite-version}</version>
+            <version>${javalite.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.javalite</groupId>
             <artifactId>activejdbc</artifactId>
-            <version>${javalite-version}</version>
+            <version>${javalite.version}</version>
         </dependency>
 
         <dependency>
@@ -110,7 +110,7 @@
             <plugin>
                 <groupId>org.javalite</groupId>
                 <artifactId>activejdbc-instrumentation</artifactId>
-                <version>2.0</version>
+                <version>${javalite.version}</version>
                 <executions>
                     <execution>
                         <phase>process-classes</phase>
@@ -120,6 +120,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -144,5 +145,26 @@
                 </executions>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.javalite</groupId>
+                    <artifactId>activeweb-lessc-maven-plugin</artifactId>
+                    <version>${javalite.version}</version>
+                    <configuration>
+                        <lesscMain>${basedir}/src/main/webapp/less/bootstrap.less</lesscMain>
+                        <targetDirectory>${basedir}/target/web</targetDirectory>
+                        <targetFileName>bootstrap.css</targetFileName>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals><goal>compile</goal></goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
     </build>
 </project>
