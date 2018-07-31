@@ -5,8 +5,7 @@ import org.javalite.activeweb.controllers.AbstractLesscController;
 import java.io.File;
 
 /**
- *
- * Created by igor on 4/29/14.
+ * @author shanef on 7/30/18.
  */
 public class BootstrapController extends AbstractLesscController {
 

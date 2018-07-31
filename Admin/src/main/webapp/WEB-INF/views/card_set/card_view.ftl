@@ -26,11 +26,12 @@
 
 <div style="margin-top:20px">
 
-    <h2>Add a card to set ${set_name}</h2>
+    <h2>${header}</h2>
 
-    <@form controller="card_set" action="create_new_card" method="post">
+    <@form controller="card_set" action="${form_action}" method="post">
 
         <input type="hidden" name="set_id" value=${set_id} />
+        <input type="hidden" name="id" value="${card_id!""}" />
 
         <div id="main" class="form-box">
             <@render partial="card_common_panel"/>
@@ -49,12 +50,9 @@
             <@render partial="item_panel"/>
         </div>
 
-        <div class="row margin-top-30">
-            <div>
-                <@link_to action="overview/${set_id}">Cancel</@link_to>
-            </div>
-
-            <button type="submit">Create</button>
+        <div class="center">
+            <@link_to class="btn-decline btn-medium" action="overview/${set_id}">Cancel</@link_to>
+            <button class="btn-confirm btn-medium" type="submit">${form_submit_btn_text}</button>
         </div>
     </@form>
 

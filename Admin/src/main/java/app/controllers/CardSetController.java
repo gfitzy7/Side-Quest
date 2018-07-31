@@ -63,6 +63,12 @@ public class CardSetController extends AbstractAppController {
         view("set_name", cardSet.getName());
         view("rarity_names", rarityNames);
         view("classes", classes);
+
+        view("header", "Add a card to set " + cardSet.getName());
+        view("form_action", "create_new_card");
+        view("form_submit_btn_text", "Create");
+
+        render("card_view");
     }
 
     @POST
@@ -165,6 +171,12 @@ public class CardSetController extends AbstractAppController {
         view("rarity_names", rarityNames);
         view("classes", classes);
         view("isEdit", "true");
+
+        view("header", "Edit Card");
+        view("form_action", "save_card");
+        view("form_submit_btn_text", "Save");
+
+        render("card_view");
     }
 
     @POST
@@ -186,7 +198,7 @@ public class CardSetController extends AbstractAppController {
         }
 
         if(card.getCardType() == Card.CardType.CHARACTER){
-            card.set("class", CharacterClass.findByName(param("class")).getId());
+            card.set("class_id", CharacterClass.findByName(param("class")).getId());
             card.set("power", param("power"));
             card.set("health", param("health"));
             card.set("attack", param("attack"));
