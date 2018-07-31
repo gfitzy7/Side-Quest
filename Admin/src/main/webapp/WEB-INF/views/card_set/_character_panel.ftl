@@ -1,7 +1,3 @@
-<@content for="js">
-
-</@content>
-
 <table>
 
     <tr>
