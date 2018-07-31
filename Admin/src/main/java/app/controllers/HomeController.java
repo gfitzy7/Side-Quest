@@ -8,9 +8,4 @@ public class HomeController extends AbstractAppController {
         view("username", session().get(AbstractAppController.USER_NAME));
     }
 
-    @GET
-    public void test(){
-        System.out.println("ping");
-    }
-
 }
