@@ -58,11 +58,13 @@ public class CardSetController extends AbstractAppController {
         CardSet cardSet = CardSet.findById(getId());
         List<String> rarityNames = Rarity.getAllFromMostToLeastCommonWithPrefix();
         List<CharacterClass> classes = CharacterClass.findAll();
+        EquipmentCard.Slot[] equipmentSlots = EquipmentCard.Slot.values();
 
         view("set_id", getId());
         view("set_name", cardSet.getName());
         view("rarity_names", rarityNames);
         view("classes", classes);
+        view("equipmentSlots", equipmentSlots);
 
         view("header", "Add a card to set " + cardSet.getName());
         view("form_action", "create_new_card");
@@ -93,10 +95,26 @@ public class CardSetController extends AbstractAppController {
             CharacterCard.createIt(namesAndValues.toArray());
         }
         else if(cardType == Card.CardType.EQUIPMENT){
+            namesAndValues.add("slot");
+            namesAndValues.add(param("equipmentSlot"));
+            namesAndValues.add("bonus_damage");
+            namesAndValues.add(param("bonus_damage"));
+            namesAndValues.add("bonus_armor");
+            namesAndValues.add(param("bonus_armor"));
+            namesAndValues.add("bonus_health");
+            namesAndValues.add(param("bonus_health"));
+            namesAndValues.add("bonus_spell_damage");
+            namesAndValues.add(param("bonus_spell_damage"));
+            namesAndValues.add("is_battle_ready");
+            namesAndValues.add(exists("isBattleReady") ? "1" : "0");
+            namesAndValues.add("is_burdensome");
+            namesAndValues.add(exists("isBurdensome") ? "1" : "0");
+            namesAndValues.add("is_artifact");
+            namesAndValues.add(exists("isArtifact") ? "1" : "0");
 
             createParentCard(namesAndValues);
 
-            GambitCard.createIt(namesAndValues.toArray());
+            EquipmentCard.createIt(namesAndValues.toArray());
         }
         else if(cardType == Card.CardType.GAMBIT){
             namesAndValues.add("use_variable_mana_cost");
@@ -161,6 +179,18 @@ public class CardSetController extends AbstractAppController {
             view("character_attack", characterCard.getAttack());
             view("character_defense", characterCard.getDefense());
         }
+        else if(card.getCardType() == Card.CardType.EQUIPMENT){
+            EquipmentCard equipmentCard = (EquipmentCard) card;
+            view("equipment_slot", equipmentCard.getSlot());
+            view("equipmentSlots", EquipmentCard.Slot.values());
+            view("bonus_damage", equipmentCard.getBonusDamage());
+            view("bonus_armor", equipmentCard.getBonusArmor());
+            view("bonus_health", equipmentCard.getBonusHealth());
+            view("bonus_spell_damage", equipmentCard.getBonusSpellDamage());
+            view("isBattleReady", equipmentCard.isBattleReady());
+            view("isBurdensome", equipmentCard.isBurdensome());
+            view("isArtifact", equipmentCard.isArtifact());
+        }
         else if(card.getCardType() == Card.CardType.GAMBIT){
             GambitCard gambitCard = (GambitCard) card;
             view("gambit_use_variable_mana_cost", gambitCard.getUseVariableManaCost());
@@ -203,6 +233,9 @@ public class CardSetController extends AbstractAppController {
             card.set("health", param("health"));
             card.set("attack", param("attack"));
             card.set("defense", param("defense"));
+        }
+        if(card.getCardType() == Card.CardType.EQUIPMENT){
+            //TODO
         }
         if(card.getCardType() == Card.CardType.GAMBIT){
             if(exists("useVariableManaCost") && exists("variableManaCost")){
