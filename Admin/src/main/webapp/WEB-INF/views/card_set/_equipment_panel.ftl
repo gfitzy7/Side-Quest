@@ -5,9 +5,11 @@
             <label for="equipmentSlot">Slot:</label>
             <br/>
             <select name="equipmentSlot" id="equipmentSlot">
-                <#list equipmentSlots as slot>
-                    <option value="${slot}" <#if equipment_slot??  &&  "${equipment_slot}"?contains(slot)>selected="selected"</#if>>${slot.displayName}</option>
-                </#list>
+                <#if equipmentSlots??>
+                    <#list equipmentSlots as slot>
+                        <option value="${slot}" <#if equipment_slot??  &&  "${equipment_slot}"?contains(slot)>selected="selected"</#if>>${slot.displayName}</option>
+                    </#list>
+                </#if>
             </select>
         </td>
         <td class="third">
