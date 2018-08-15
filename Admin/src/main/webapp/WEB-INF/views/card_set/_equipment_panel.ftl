@@ -42,20 +42,42 @@
 
     <tr>
         <td class="third">
-            <input type="checkbox" name="isBurdensome" id="isBurdensome" <#if isBurdensome?? && isBurdensome>checked</#if>/>
-            <label for="isBurdensome">Burdensome</label>
+            <input type="checkbox" name="is_burdensome" id="is_burdensome" <#if is_burdensome?? && is_burdensome>checked</#if>/>
+            <label for="is_burdensome">Burdensome</label>
             <br/>
             <br/>
-            <input type="checkbox" name="isBattleReady" id="isBattleReady" <#if isBattleReady?? && isBattleReady>checked</#if>/>
-            <label for="isBattleReady">Battle-ready</label>
+            <input type="checkbox" name="is_battle_ready" id="is_battle_ready" <#if is_battle_ready?? && is_battle_ready>checked</#if>/>
+            <label for="is_battle_ready">Battle-ready</label>
             <br/>
             <br/>
-            <input type="checkbox" name="isArtifact" id="isArtifact" <#if isArtifact?? && isArtifact>checked</#if>/>
-            <label for="isArtifact">Artifact</label>
+            <input type="checkbox" name="is_artifact" id="is_artifact" <#if is_artifact?? && is_artifact>checked</#if>/>
+            <label for="is_artifact">Artifact</label>
         </td>
         <td class="third">
 
         </td>
+        <td class="third">
+
+        </td>
+    </tr>
+
+    <tr style="margin-top:55px">
+        <td class="third">
+            <label for="abilities">Abilities:</label>
+            <br/>
+            <select id="abilities">
+                <#if abilities??>
+                    <#list abilities as ability>
+                        <option value="${ability}">${ability.name}</option>
+                    </#list>
+                </#if>
+            </select>
+        </td>
+
+        <td class="third">
+
+        </td>
+
         <td class="third">
 
         </td>
