@@ -58,12 +58,14 @@ public class CardSetController extends AbstractAppController {
         CardSet cardSet = CardSet.findById(getId());
         List<String> rarityNames = Rarity.getAllFromMostToLeastCommonWithPrefix();
         List<CharacterClass> classes = CharacterClass.findAll();
+        List<CardAbility> abilities = CardAbility.findAll();
         EquipmentCard.Slot[] equipmentSlots = EquipmentCard.Slot.values();
 
         view("set_id", getId());
         view("set_name", cardSet.getName());
         view("rarity_names", rarityNames);
         view("classes", classes);
+        view("abilities", abilities);
         view("equipmentSlots", equipmentSlots);
 
         view("header", "Add a card to set " + cardSet.getName());

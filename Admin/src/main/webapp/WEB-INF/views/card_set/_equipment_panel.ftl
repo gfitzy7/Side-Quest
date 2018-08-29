@@ -41,7 +41,7 @@
     </tr>
 
     <tr>
-        <td class="third">
+        <td class="third padding-bottom-24">
             <input type="checkbox" name="is_burdensome" id="is_burdensome" <#if is_burdensome?? && is_burdensome>checked</#if>/>
             <label for="is_burdensome">Burdensome</label>
             <br/>
@@ -56,28 +56,6 @@
         <td class="third">
 
         </td>
-        <td class="third">
-
-        </td>
-    </tr>
-
-    <tr style="margin-top:55px">
-        <td class="third">
-            <label for="abilities">Abilities:</label>
-            <br/>
-            <select id="abilities">
-                <#if abilities??>
-                    <#list abilities as ability>
-                        <option value="${ability}">${ability.name}</option>
-                    </#list>
-                </#if>
-            </select>
-        </td>
-
-        <td class="third">
-
-        </td>
-
         <td class="third">
 
         </td>

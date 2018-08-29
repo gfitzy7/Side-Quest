@@ -13,8 +13,12 @@
             $('#equipment').hide();
             $('#gambit').hide();
             $('#item').hide();
+            $('#abilities').hide();
 
             $('#' + selected).show();
+            if(selected === 'character' || selected === 'equipment'){
+                $('#abilities').show();
+            }
         };
 
         function updateDeckLimitField(){
@@ -46,8 +50,11 @@
         <div id="gambit" class="form-box">
             <@render partial="gambit_panel"/>
         </div>
-        <div id="item">
+        <div id="item" class="form-box">
             <@render partial="item_panel"/>
+        </div>
+        <div id="abilities" class="form-box">
+            <@render partial="abilities_panel"/>
         </div>
 
         <div class="center">
