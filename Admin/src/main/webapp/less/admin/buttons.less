@@ -30,3 +30,25 @@
   border: 2px solid #CCC;
   .btn();
 }
+
+.btn-common {
+  border-right-color: #333;
+  border-bottom-color: #333;
+  border-left-color: #CCC;
+  border-top-color: #CCC;
+  font: bold 16px Arial;
+  margin: 4px;
+  cursor: pointer;
+  color: #000;
+}
+
+.btn-plus {
+  background-color: @btn-confirm-color;
+  .btn-common();
+}
+
+.btn-minus {
+  background-color: @btn-decline-color;
+  .btn-common();
+  margin-right: 20px;
+}

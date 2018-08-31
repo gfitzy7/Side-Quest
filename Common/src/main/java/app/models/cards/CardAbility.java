@@ -13,4 +13,8 @@ public class CardAbility extends Model {
         return getString("name");
     }
 
+    public String getDescription() {
+        return getString("description");
+    }
+
 }
