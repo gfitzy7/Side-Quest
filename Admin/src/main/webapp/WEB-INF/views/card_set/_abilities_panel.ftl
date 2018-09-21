@@ -18,22 +18,34 @@
         }
 
         function addAbility() {
-            var ability = getSelectedAbility();
-            if(!cardAbilities[ability]){
-                cardAbilities[ability] = 1;
+            var rawAbilityName = getSelectedAbility();
+            var parsedAbilityName = rawAbilityName.replace(' ', '_');
+            if(!cardAbilities[parsedAbilityName]){
+                cardAbilities[parsedAbilityName] = 1;
                 var table = document.getElementById("abilitiesTable");
                 var row = table.insertRow(0);
 
-                var numberId = ability.replace(' ', '_') + '-level';
+                var numberId = parsedAbilityName + '-level';
 
                 var cell0 = row.insertCell(0);
-                cell0.innerHTML = ('<button class="btn-minus" type="button" onclick="removeAbility(getSelectedAbility())">-</button>' +
-                        '<label for=' + numberId + '>' + ability + ':  </label>' +
-                        '<input style="width:15%" type="number" id=' + numberId + ' value="1"/>');
+                cell0.innerHTML = (
+                    '<div id=' + parsedAbilityName + '_row>' +
+                        '<button class="btn-minus" type="button" onclick="removeAbility(\'' + parsedAbilityName + '\')">-</button>' +
+                        '<label for=' + numberId + '>' + rawAbilityName + ':  </label>' +
+                        '<input style="width:15%" type="number" id=' + numberId + ' value="1"/>' +
+                    '</div>'
+                );
 
-                // var cell1 = row.insertCell(1);
-                // cell1.innerHTML = '<button class="btn-minus" type="button" onclick="removeAbility(getSelectedAbility())">-</button>';
             }
+        }
+
+        function removeAbility(ability) {
+            var row = document.getElementById(ability + '_row');
+            if(row) {
+                cardAbilities[ability] = 0;
+                row.parentNode.removeChild(row);
+            }
+
         }
 
         function getSelectedAbility() {
