@@ -79,6 +79,7 @@ public class CardSetController extends AbstractAppController {
     public void createNewCard(){
         ArrayList<Object> namesAndValues = getCommonNamesAndValues();
 
+        Card card = null;
         Card.CardType cardType = Card.CardType.getCardType(param("cardType"));
         if(cardType == Card.CardType.CHARACTER){
             namesAndValues.add("power");
@@ -94,7 +95,7 @@ public class CardSetController extends AbstractAppController {
 
             createParentCard(namesAndValues);
 
-            CharacterCard.createIt(namesAndValues.toArray());
+            card = CharacterCard.createIt(namesAndValues.toArray());
         }
         else if(cardType == Card.CardType.EQUIPMENT){
             namesAndValues.add("slot");
@@ -116,7 +117,7 @@ public class CardSetController extends AbstractAppController {
 
             createParentCard(namesAndValues);
 
-            EquipmentCard.createIt(namesAndValues.toArray());
+            card = EquipmentCard.createIt(namesAndValues.toArray());
         }
         else if(cardType == Card.CardType.GAMBIT){
             namesAndValues.add("use_variable_mana_cost");
@@ -126,12 +127,16 @@ public class CardSetController extends AbstractAppController {
 
             createParentCard(namesAndValues);
 
-            GambitCard.createIt(namesAndValues.toArray());
+            card = GambitCard.createIt(namesAndValues.toArray());
         }
         else if(cardType == Card.CardType.ITEM){
             createParentCard(namesAndValues);
 
-            ItemCard.createIt(namesAndValues.toArray());
+            card = ItemCard.createIt(namesAndValues.toArray());
+        }
+
+        if(card != null) {
+
         }
 
         redirect(CardSetController.class, "overview", param("set_id"));
@@ -264,7 +269,6 @@ public class CardSetController extends AbstractAppController {
 
     private ArrayList<Object> getCommonNamesAndValues(){
         CardSet set = CardSet.findById(param("set_id"));
-        List<CardAbility> abilities = CardAbility.findAll();
 
         ArrayList<Object> namesAndValues = new ArrayList<>();
 
@@ -282,8 +286,6 @@ public class CardSetController extends AbstractAppController {
         namesAndValues.add(Rarity.findByName(param("rarity")).getLongId());
         namesAndValues.add("rarity_weight");
         namesAndValues.add(param("rarityWeight"));
-        namesAndValues.add("abilities");
-        namesAndValues.add(abilities);
 
         if(exists("useDeckLimit")){
             namesAndValues.add("deck_limit");
