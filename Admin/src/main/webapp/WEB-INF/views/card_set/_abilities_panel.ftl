@@ -27,12 +27,20 @@
 
                 var numberId = parsedAbilityName + '-level';
 
+                var max = 100;
+                <#list abilities as ability>
+                    var abilityName = "${ability.name}";
+                    if(abilityName === getSelectedAbility()){
+                        max = "${ability.max_level!100}";
+                    }
+                </#list>
+
                 var cell0 = row.insertCell(0);
                 cell0.innerHTML = (
                     '<div id=' + parsedAbilityName + '_row>' +
                         '<button class="btn-minus" type="button" onclick="removeAbility(\'' + parsedAbilityName + '\')">-</button>' +
                         '<label for=' + numberId + '>' + rawAbilityName + ':  </label>' +
-                        '<input style="width:15%" type="number" id=' + numberId + ' value="1"/>' +
+                        '<input style="width:15%" type="number" id=' + numberId + ' value="1" max=' + max + ' min="1"/>' +
                     '</div>'
                 );
 

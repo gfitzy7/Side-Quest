@@ -17,4 +17,8 @@ public class CardAbility extends Model {
         return getString("description");
     }
 
+    public Integer getMaxLevel() {
+        return getInteger("max_level");
+    }
+
 }
