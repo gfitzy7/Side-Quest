@@ -15,7 +15,10 @@
             $('#item').hide();
             $('#abilities').hide();
 
-            $('#' + selected).show();
+            if(selected !== 'item') {
+                $('#' + selected).show();
+            }
+
             if(selected === 'character' || selected === 'equipment'){
                 $('#abilities').show();
             }
