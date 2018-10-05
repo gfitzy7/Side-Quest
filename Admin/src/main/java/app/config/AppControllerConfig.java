@@ -1,5 +1,6 @@
 package app.config;
 
+import app.controllers.BootstrapController;
 import app.controllers.LoginController;
 import app.filters.AuthorizationFilter;
 import org.javalite.activeweb.AbstractControllerConfig;
@@ -11,7 +12,7 @@ public class AppControllerConfig extends AbstractControllerConfig {
     public void init(AppContext context) {
         add(new DBConnectionFilter("default", true));
 
-        add(new AuthorizationFilter()).exceptFor(LoginController.class);
+        add(new AuthorizationFilter()).exceptFor(LoginController.class, BootstrapController.class);
     }
 
 }
