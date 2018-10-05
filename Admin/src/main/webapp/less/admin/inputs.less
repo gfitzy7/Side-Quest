@@ -8,10 +8,21 @@ input:not([type=checkbox]), select{
   box-sizing: border-box;
 }
 
+textarea{
+  padding: 8px 12px;
+  margin: 8px 0 16px;
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 input[type=number]{
   width:35%;
   padding: 8px 0px 8px 12px;
 }
+
+
 
 select{
   width:80%;
@@ -21,4 +32,23 @@ select{
 input:disabled, select:disabled {
   background: #CCC;
   font-weight: bold;
+}
+
+.single-form > input{
+  width:35%;
+  display:inline-block;
+  vertical-align:middle;
+}
+
+.single-form > textarea{
+  width:35%;
+  display:inline-block;
+  vertical-align:middle;
+}
+
+.single-form > label{
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  padding-right: 10px;
 }

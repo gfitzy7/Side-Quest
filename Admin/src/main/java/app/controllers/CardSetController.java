@@ -30,6 +30,7 @@ public class CardSetController extends AbstractAppController {
         CardSet cardSet = CardSet.findById(getId());
         List<Card> cards = cardSet.findAllFromSet();
 
+        view("card_set", cardSet);
         view("set_id", cardSet.getId());
         view("set_name", cardSet.getName());
         view("cards", cards);
@@ -151,11 +152,22 @@ public class CardSetController extends AbstractAppController {
     }
 
     @POST
-    public void saveCard(){
+    public void saveCard() {
         Card card = Card.findById(getId());
         cardService.saveCard(card, params1st());
 
         redirect(CardSetController.class, "overview", param("set_id"));
+    }
+
+    @GET
+    public void publish() {
+        CardSet set = CardSet.findById(getId());
+
+        set.setInteger("num_cards", set.findAllFromSet().size());
+        set.setDate("release_date", System.currentTimeMillis());
+        set.saveIt();
+
+        redirectToReferrer();
     }
 
     private void loadStaticCardData() {

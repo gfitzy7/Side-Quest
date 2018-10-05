@@ -2,9 +2,9 @@
 
     <h3>Create a new card set!</h3>
 
-    <@form controller="cardSet" action="create_new_set" method="post" html_id="new_set_form">
+    <@form class="single-form" controller="cardSet" action="create_new_set" method="post" html_id="new_set_form">
         <label for="name">Set Name:</label>
-        <input type="text" name="name">
+        <input type="text" name="name" placeholder="Set name...">
 
         <br/>
 

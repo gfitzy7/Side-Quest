@@ -68,4 +68,8 @@ public class CardSet extends Model {
         }
     }
 
+    public Boolean isPublished() {
+        return getDate("release_date") != null;
+    }
+
 }

@@ -15,13 +15,11 @@ public class Card extends Model implements Comparable<Card> {
         ITEM(ItemCard.class, "item_cards", "Item", 4);
 
         private Class cardClass;
-        private String tableName;
         private String displayName;
         private int sortPriority;
 
         CardType(Class<? extends Card> cardClass, String tableName, String displayName, int sortPriority) {
             this.cardClass = cardClass;
-            this.tableName = tableName;
             this.displayName = displayName;
             this.sortPriority = sortPriority;
         }
@@ -92,6 +90,10 @@ public class Card extends Model implements Comparable<Card> {
 
     public Integer getSetCardNumber(){
         return getInteger("card_set_card_number");
+    }
+
+    public Boolean isPublished() {
+        return parent(CardSet.class).isPublished();
     }
 
     @Override

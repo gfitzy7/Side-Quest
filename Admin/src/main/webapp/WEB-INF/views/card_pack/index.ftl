@@ -20,7 +20,7 @@
             <#--<td><a href="/card_set/overview?id=${set.id}">${set.set_name!""}</a></td>-->
             <#--<td>${set.num_cards!""}</td>-->
             <#--<td>${set.set_description!""}</td>-->
-            <#--<td>${set.set_release_date!""}</td>-->
+            <#--<td>${set.release_date!""}</td>-->
         <#--</tr>-->
         <#--</#list>-->
     <#--</table>-->

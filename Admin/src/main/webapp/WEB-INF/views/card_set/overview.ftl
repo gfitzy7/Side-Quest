@@ -8,14 +8,14 @@
     </div>
 
     <div style="text-align:center;padding-bottom:20px">
-        <a href="/card_set/overview?id=${set_id}" style="text-decoration:none;padding-right:10px">
-            <button>Delete Set</button>
+        <a <#if !card_set.release_date??>href="/card_set/overview?id=${set_id}"</#if> style="text-decoration:none;padding-right:10px">
+            <button <#if card_set.release_date??>disabled</#if>>Delete Set</button>
         </a>
-        <a href="/card_set/new_card?id=${set_id}" style="text-decoration:none;padding-right:10px">
-            <button>New Card</button>
+        <a <#if !card_set.release_date??>href="/card_set/new_card?id=${set_id}"</#if> style="text-decoration:none;padding-right:10px">
+            <button <#if card_set.release_date??>disabled</#if>>New Card</button>
         </a>
-        <a href="/card_set/refresh_order?id=${set_id}" style="text-decoration:none;padding-right:10px">
-            <button>Refresh Order</button>
+        <a <#if !card_set.release_date??>href="/card_set/refresh_order?id=${set_id}"</#if> style="text-decoration:none;padding-right:10px">
+            <button <#if card_set.release_date??>disabled</#if>>Refresh Order</button>
         </a>
     </div>
 
@@ -35,8 +35,10 @@
                 <td>${card.rarity.name!""}</td>
                 <td>${card.card_set_card_number!""}</td>
                 <td>${card.description!""}</td>
-                <td>
-                    <@link_to class="btn-decline" action="delete_card/${card.cardId}" confirm="Are you sure you want to delete this card?">Delete</@>
+                <td align="center">
+                    <#if !card_set.release_date??>
+                        <@link_to class="btn-decline" action="delete_card/${card.cardId}" confirm="Are you sure you want to delete this card?">Delete</@>
+                    </#if>
                     <@link_to class="btn-confirm" action="edit_card/${card.cardId}">Edit</@>
                 </td>
             </tr>
