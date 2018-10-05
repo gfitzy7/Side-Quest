@@ -6,7 +6,9 @@ import org.javalite.activeweb.annotations.POST;
 public class LoginController extends AbstractAppController {
 
     public void index(){
-
+        if(getUserSession() != null) {
+            redirect(HomeController.class);
+        }
     }
 
     @POST
