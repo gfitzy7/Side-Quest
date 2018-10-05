@@ -35,6 +35,8 @@
                         <a href="/login/logout">Logout</a>
                     </div>
                 </div>
+            <#else>
+                <div class="navbar-empty"></div>
             </#if>
         </div>
 
