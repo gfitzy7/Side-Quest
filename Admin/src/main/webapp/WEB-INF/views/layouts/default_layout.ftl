@@ -6,6 +6,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="${context_path}/js/aw.js"></script>
     <link rel="stylesheet" type="text/css" href="/bootstrap"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Side Quest - Admin</title>
 
     <@yield to="style"/>
