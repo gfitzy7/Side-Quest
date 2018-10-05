@@ -1,5 +1,6 @@
 package app.controllers;
 
+import org.javalite.activeweb.annotations.GET;
 import org.javalite.activeweb.annotations.POST;
 
 public class LoginController extends AbstractAppController {
@@ -18,6 +19,12 @@ public class LoginController extends AbstractAppController {
         else{
             redirectToReferrer();
         }
+    }
+
+    @GET
+    public void logout() {
+        session().invalidate();
+        redirect(LoginController.class);
     }
 
 }

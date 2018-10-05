@@ -13,6 +13,27 @@
 </head>
 <body>
 
+<div class="navbar">
+    <a href="/home">Home</a>
+    <div class="dropdown">
+        <button class="dropbtn">Cards
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/card_set">Card Sets</a>
+            <a href="/card_pack">Card Packs</a>
+        </div>
+    </div>
+    <div class="dropdown" style="float:right">
+        <button class="dropbtn">Account
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/login/logout">Logout</a>
+        </div>
+    </div>
+</div>
+
 <div class="main">
     <div class="content">
         ${page_content}
