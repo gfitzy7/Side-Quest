@@ -3,9 +3,7 @@
 <div>
 
     <div style="text-align:center;padding-bottom:20px">
-        <a href="/card_pack" style="text-decoration:none;padding-right:10px">
-            <button>Create New Card Pack</button>
-        </a>
+        <@link_to class="btn-confirm" action="new_pack">Create Pack</@>
     </div>
 
     <#--<table style="width:100%">-->

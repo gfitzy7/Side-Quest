@@ -17,4 +17,9 @@ public class CardPackController extends AbstractAppController {
         view("packs", packs);
     }
 
+    @GET
+    public void newPack() {
+        render("new_pack");
+    }
+
 }
