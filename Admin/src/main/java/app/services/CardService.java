@@ -4,10 +4,7 @@ import app.models.CharacterClass;
 import app.models.cards.*;
 import app.models.packs.Rarity;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author shanef on 10/2/18.
@@ -128,6 +125,19 @@ public class CardService {
         card.saveIt();
 
         return card;
+    }
+
+    public HashMap<Rarity, Integer> getRarityCountsInSet(CardSet cardSet) {
+        HashMap<Rarity, Integer> hmRarityCount = new HashMap<>();
+
+        List<Card> cards = cardSet.findAllFromSet();
+        for(Card card : cards) {
+            Rarity cardRarity = card.getRarity();
+            Integer count = (hmRarityCount.get(cardRarity) == null ? 0 : hmRarityCount.get(cardRarity));
+            hmRarityCount.put(cardRarity, count + 1);
+        }
+
+        return hmRarityCount;
     }
 
     private Card createParentCard(ArrayList<Object> namesAndValues) {

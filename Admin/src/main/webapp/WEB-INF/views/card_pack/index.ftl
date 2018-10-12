@@ -1,5 +1,3 @@
-<@content for="title">Card Packs</@content>
-
 <div>
 
     <div style="text-align:center;padding-bottom:20px">
@@ -22,5 +20,14 @@
         <#--</tr>-->
         <#--</#list>-->
     <#--</table>-->
+
+    <#if (flasher.error) ??>
+        <script type="text/javascript">
+            $(function() {
+                window.toastr.options.positionClass = 'toast-bottom-right';
+                window.toastr.info('${flasher.error}');
+            });
+        </script>
+    </#if>
 
 </div>

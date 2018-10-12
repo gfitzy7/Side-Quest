@@ -11,15 +11,15 @@
     </div>
 
     <table>
-        <tr style="background-color:lightblue">
-            <th width="12%">Set Name</th>
-            <th width="8%">Num Cards</th>
-            <th>Description</th>
-            <th width="10%">Release Date</th>
-            <th width="10%">Actions</th>
+        <tr class="styled-blue" >
+            <th class="styled-blue" width="12%">Set Name</th>
+            <th class="styled-blue" width="8%">Num Cards</th>
+            <th class="styled-blue">Description</th>
+            <th class="styled-blue" width="10%">Release Date</th>
+            <th class="styled-blue" width="10%">Actions</th>
         </tr>
         <#list cardSets as set>
-        <tr style="text-align:center;background-color:lightgrey">
+        <tr class="styled-blue center" >
             <td><a href="/card_set/overview?id=${set.id}">${set.set_name!""}</a></td>
             <td>${set.num_cards!""}</td>
             <td>${set.set_description!""}</td>

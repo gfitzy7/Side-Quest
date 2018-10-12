@@ -31,7 +31,7 @@
     </script>
 </@content>
 
-<div style="margin-top:20px">
+<div>
 
     <h2>${header}</h2>
 

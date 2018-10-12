@@ -21,15 +21,15 @@
 
     <table style="width:100%">
         <tr style="background-color:lightblue">
-            <th width="12%">Name</th>
-            <th width="9%">Card Type</th>
-            <th width="9%">Rarity</th>
-            <th width="5%">#</th>
-            <th>Description</th>
-            <th width="14%">Actions</th>
+            <th class="styled-blue" width="12%">Name</th>
+            <th class="styled-blue" width="9%">Card Type</th>
+            <th class="styled-blue" width="9%">Rarity</th>
+            <th class="styled-blue" width="5%">#</th>
+            <th class="styled-blue">Description</th>
+            <th class="styled-blue" width="14%">Actions</th>
         </tr>
         <#list cards as card>
-            <tr>
+            <tr class="styled-blue center">
                 <td>${card.name!""}</a></td>
                 <td>${card.type!""}</td>
                 <td>${card.rarity.name!""}</td>

@@ -11,6 +11,10 @@ public class CardSet extends Model {
         return CardSet.findAll();
     }
 
+    public static List<CardSet> getPublishedCardSets() {
+        return CardSet.find("release_date IS NOT NULL");
+    }
+
     public int getNumCardSets(){
         return getAllCardSets().size();
     }
