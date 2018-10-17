@@ -27,6 +27,7 @@ public class CardPackController extends AbstractAppController {
             redirectToReferrer();
         }
         else {
+            view("publishedSets", publishedSets);
             render("new_pack");
         }
     }

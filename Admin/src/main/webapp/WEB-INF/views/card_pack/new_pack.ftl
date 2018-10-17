@@ -1,8 +1,3 @@
-<#--Card Set-->
-<#--Name-->
-<#--Description-->
-<#--Number of Cards-->
-
 <#--Configs-->
 <div>
 
@@ -14,13 +9,44 @@
             <tr>
 
                 <td class="form-box-left">
-                    <div>
+                    <div id="left-panel">
+
+                        <label for="cardSet">Card Set:</label>
+                        <br/>
+                        <select name="cardSet" id="cardSet" style="max-width:100px;width:50%;margin-bottom:24px">
+                            <#list publishedSets as publishedSet>
+                                <option value="${publishedSet}">${publishedSet.name}</option>
+                            </#list>
+                        </select>
+
+                        <br/>
+
+                        <label for="numCards">Number of Cards:</label>
+                        <br/>
+                        <input type="number" name="numCards" id="numCards" value="8" style="max-width:100px;width:50%;margin-bottom:24px"/>
+
+                        <br/>
+
+                        <label for="packName">Card Pack Name:</label>
+                        <input type="text" name="packName" id="packName" style="margin-bottom:24px"/>
+
+                        <br/>
+
+                        <label for="packDescription">Description:</label>
+                        <input type="text" name="packDescription" id="packDescription" style="margin-bottom:24px"/>
+
+                        <br/>
+
+                        <div style="text-align:right">
+                            <button class="btn-decline btn-medium" type="button">Cancel</button>
+                            <button class="btn-confirm btn-medium" type="button" onclick="setUpConfigs()">Continue</button>
+                        </div>
 
                     </div>
                 </td>
 
                 <td class="form-box-right">
-                    <div>
+                    <div id="right-panel" hidden>
 
                     </div>
                 </td>
@@ -28,33 +54,6 @@
             </tr>
         </table>
 
-        <#--<input type="hidden" name="set_id" value=${set_id} />-->
-        <#--<input type="hidden" name="id" value="${card_id!""}" />-->
-
-        <#--<div id="main" class="form-box">-->
-            <#--<@render partial="card_common_panel"/>-->
-        <#--</div>-->
-
-        <#--<div id="character" class="form-box">-->
-            <#--<@render partial="character_panel"/>-->
-        <#--</div>-->
-        <#--<div id="equipment" class="form-box">-->
-            <#--<@render partial="equipment_panel"/>-->
-        <#--</div>-->
-        <#--<div id="gambit" class="form-box">-->
-            <#--<@render partial="gambit_panel"/>-->
-        <#--</div>-->
-        <#--<div id="item" class="form-box">-->
-            <#--<@render partial="item_panel"/>-->
-        <#--</div>-->
-        <#--<div id="abilities" class="form-box">-->
-            <#--<@render partial="abilities_panel"/>-->
-        <#--</div>-->
-
-        <#--<div class="center">-->
-            <#--<@link_to class="btn-decline btn-medium" action="overview/${set_id}">Cancel</@link_to>-->
-            <#--<button class="btn-confirm btn-medium" type="submit">${form_submit_btn_text}</button>-->
-        <#--</div>-->
     </@form>
 
 </div>
