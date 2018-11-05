@@ -4,21 +4,15 @@ import org.javalite.activeweb.annotations.POST;
 
 public class LoginController extends AbstractAppController {
 
-    public void index(){
-//        if(session().get){
-//            redirect(HomeController.class);
-//        }
-    }
-
     @POST
     public void attemptLogin(){
         String username = param("username");
         String password = param("password");
         if(login(username, password)){
-            redirect(HomeController.class);
+            respond(session().getId());
         }
         else{
-            redirectToReferrer();
+            respond("Unable to log in.").contentType("text/plain").statusCode(401);
         }
     }
 

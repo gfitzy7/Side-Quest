@@ -19,4 +19,12 @@ public class User extends Model {
             return null;
         }
     }
+
+    public Integer getGold() {
+        return getInteger("gold");
+    }
+
+    public User setGold(int gold) {
+        return this.setInteger("gold", gold);
+    }
 }

@@ -39,4 +39,8 @@ public abstract class AbstractAppController extends AppController {
         return (UserSession) session(USER_SESSION);
     }
 
+    public User getUser() {
+        return User.findById(session(USER_ID));
+    }
+
 }
